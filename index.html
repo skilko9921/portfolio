@@ -10,14 +10,16 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030303; color: white; cursor: none; overflow-x: hidden; }
         
+        /* Cursor in Neon Pink */
         #cursor-outline {
-            width: 35px; height: 35px; border: 2px solid #3b82f6;
+            width: 35px; height: 35px; border: 2px solid #ff00ff;
             position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
         }
 
         .reveal { opacity: 0; transform: translateY(30px); }
 
-        /* Smooth Card Styling */
+        /* Smooth Card Styling with Purple/Pink Glow */
         .card { 
             background: #0a0a0a; 
             border: 1px solid rgba(255,255,255,0.05); 
@@ -27,8 +29,8 @@
         }
         
         .card:hover { 
-            border-color: #3b82f6; 
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.15); 
+            border-color: #ff00ff; 
+            box-shadow: 0 0 40px rgba(191, 0, 255, 0.25); 
         }
 
         .social-btn { 
@@ -37,17 +39,24 @@
         }
         
         .social-btn:hover { 
-            background: #3b82f6; 
+            background: linear-gradient(90deg, #ff00ff, #bf00ff);
             color: white; 
             transform: scale(1.1) translateY(-3px); 
-            border-color: #3b82f6;
+            border-color: #ff00ff;
+            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.4);
         }
 
-        /* Subtle Background Glow */
+        /* Pink & Purple Background Glow */
         .glow {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at var(--x) var(--y), rgba(59, 130, 246, 0.08) 0%, transparent 40%);
+            background: radial-gradient(circle at var(--x) var(--y), rgba(191, 0, 255, 0.1) 0%, transparent 40%);
             z-index: -1; pointer-events: none;
+        }
+
+        .text-neon {
+            background: linear-gradient(90deg, #ff00ff, #bf00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
@@ -58,8 +67,8 @@
 
     <nav class="max-w-6xl mx-auto px-6 py-10 flex justify-between items-center">
         <div class="flex items-center gap-4">
-            <img src="RXDevPFP.png" class="w-12 h-12 rounded-full border-2 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-            <h1 class="text-3xl font-black italic tracking-tighter">RX<span class="text-blue-500">DEV</span></h1>
+            <img src="RXDevPFP.png" class="w-12 h-12 rounded-full border-2 border-[#ff00ff] shadow-[0_0_15px_rgba(255,0,255,0.5)]">
+            <h1 class="text-3xl font-black italic tracking-tighter">RX<span class="text-neon">DEV</span></h1>
         </div>
         <div class="text-[10px] font-bold text-gray-500 tracking-[0.3em] uppercase">UI Designer</div>
     </nav>
@@ -68,14 +77,14 @@
         
         <header class="py-24">
             <h1 id="hero-text" class="text-7xl md:text-[9rem] font-black leading-[0.85] italic uppercase tracking-tighter">
-                Roblox <br> <span class="text-blue-500">Developer</span>
+                Roblox <br> <span class="text-neon">Developer</span>
             </h1>
             
             <div class="mt-12 flex flex-wrap gap-4 reveal">
                 <a href="https://x.com/rxdev_yt_" target="_blank" class="social-btn px-6 py-3 rounded-xl font-bold text-sm uppercase italic">Twitter / X</a>
                 <a href="https://www.youtube.com/@RXDev_Studio" target="_blank" class="social-btn px-6 py-3 rounded-xl font-bold text-sm uppercase italic">YouTube</a>
                 <a href="https://www.roblox.com/users/2043222762/profile" target="_blank" class="social-btn px-6 py-3 rounded-xl font-bold text-sm uppercase italic">Roblox</a>
-                <div class="px-6 py-3 rounded-xl font-bold text-sm uppercase italic bg-blue-600/10 border border-blue-500/30 text-blue-400">Discord: rxdev_yt</div>
+                <div class="px-6 py-3 rounded-xl font-bold text-sm uppercase italic bg-purple-600/10 border border-purple-500/30 text-pink-400">Discord: rxdev_yt</div>
             </div>
         </header>
 
@@ -98,7 +107,7 @@
             <h3 class="text-xs font-bold tracking-[0.4em] text-gray-500 uppercase mb-8 reveal italic text-right">GFX Profile Pictures</h3>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
                 <div class="card rounded-3xl aspect-square overflow-hidden hover-tilt"><img src="GFX-Girl.png" class="w-full h-full object-cover"></div>
-                <div class="card rounded-3xl aspect-square overflow-hidden hover-tilt"><img src="image_75 (5).png" class="w-full h-full object-cover"></div>
+                <div class="card rounded-2xl aspect-square overflow-hidden hover-tilt"><img src="image_75 (5).png" class="w-full h-full object-cover"></div>
                 <div class="card rounded-3xl aspect-square overflow-hidden hover-tilt"><img src="Fan1 (13).png" class="w-full h-full object-cover"></div>
                 <div class="card rounded-3xl aspect-square overflow-hidden hover-tilt"><img src="Fan1 (9).png" class="w-full h-full object-cover"></div>
             </div>
@@ -108,13 +117,10 @@
 
     <script>
         const outline = document.getElementById('cursor-outline');
-        const glow = document.querySelector('.glow');
 
         // Smooth Cursor & Background Glow Follow
         window.addEventListener('mousemove', (e) => {
             gsap.to(outline, { x: e.clientX - 17, y: e.clientY - 17, duration: 0.6, ease: "power3.out" });
-            
-            // Updates the background radial glow position
             document.body.style.setProperty('--x', e.clientX + 'px');
             document.body.style.setProperty('--y', e.clientY + 'px');
         });
