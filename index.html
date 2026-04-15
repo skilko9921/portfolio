@@ -3,125 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RXDev | Motion Specialist</title>
+    <title>RXDev | Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #050505; 
-            color: white; 
-            overflow-x: hidden;
-            cursor: none; /* Hides default cursor for our custom one */
+            background-color: #020202; color: white; 
+            overflow-x: hidden; cursor: none;
         }
 
-        /* Custom Cursor */
-        #cursor {
-            width: 20px;
-            height: 20px;
-            background: #3b82f6;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-            box-shadow: 0 0 15px #3b82f6, 0 0 30px #3b82f6;
+        /* Magnetic Cursor */
+        #cursor-outline {
+            width: 40px; height: 40px; border: 2px solid #3b82f6;
+            position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999;
+            transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* 3D Card Animation */
-        .tilt-card {
-            perspective: 1000px;
-            transition: transform 0.5s ease;
+        /* 3D Bento Grid Logic */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            gap: 1.5rem;
+            perspective: 2000px;
         }
-        .tilt-card-inner {
-            transition: transform 0.5s shadow 0.5s;
+
+        .card {
+            position: relative;
+            border-radius: 2rem;
+            overflow: hidden;
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             transform-style: preserve-3d;
         }
-        .tilt-card:hover .tilt-card-inner {
-            transform: rotateY(10deg) rotateX(5deg) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.5);
+
+        .card:hover {
+            transform: scale(1.02) rotateY(5deg) rotateX(5deg);
+            border-color: #3b82f6;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+            z-index: 10;
         }
 
-        /* Background Motion Blur */
-        .blur-circle {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: rgba(59, 130, 246, 0.2);
-            filter: blur(80px);
-            border-radius: 50%;
-            z-index: -1;
-            animation: move 10s infinite alternate;
+        .card img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(20%, 20%); }
+        .card:hover img { transform: scale(1.1); }
+
+        .label {
+            position: absolute; bottom: 1.5rem; left: 1.5rem;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem; border-radius: 1rem;
+            font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.1em; border: 1px solid rgba(255,255,255,0.1);
         }
     </style>
 </head>
 <body>
 
-    <div id="cursor"></div>
+    <div id="cursor-outline"></div>
 
-    <div class="blur-circle top-0 left-0"></div>
-    <div class="blur-circle bottom-0 right-0" style="background: rgba(168, 85, 247, 0.15); animation-delay: -5s;"></div>
-
-    <nav class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center relative z-10">
-        <div class="flex items-center gap-3">
-            <img src="RXDevPFP.png" alt="RXDev" class="w-10 h-10 rounded-full border border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.6)]">
-            <div class="text-2xl font-black tracking-tighter uppercase">RX<span class="text-blue-500">Dev</span></div>
+    <nav class="max-w-7xl mx-auto px-10 py-10 flex justify-between items-center relative z-50">
+        <div class="flex items-center gap-4">
+            <img src="RXDevPFP.png" class="w-12 h-12 rounded-2xl border border-blue-500 shadow-lg">
+            <span class="text-2xl font-black tracking-tighter uppercase italic">RX<span class="text-blue-500">Dev</span></span>
         </div>
-        <div class="text-xs font-bold text-gray-500 tracking-[0.2em]">ANIMATOR & UI DESIGNER</div>
+        <div class="hidden md:flex gap-8 text-[10px] font-black tracking-[0.3em] text-gray-500">
+            <a href="#" class="hover:text-white transition">COMMISSIONS: OPEN</a>
+            <a href="#" class="hover:text-white transition">DISCORD: RX_DEV</a>
+        </div>
     </nav>
 
-    <header class="max-w-6xl mx-auto px-6 pt-24 pb-32">
-        <h1 class="text-7xl md:text-9xl font-black tracking-tighter leading-none">
-            PURE <br><span class="text-blue-500 italic">MOTION.</span>
-        </h1>
-    </header>
-
-    <section class="max-w-6xl mx-auto px-6 pb-40 grid grid-cols-1 md:grid-cols-2 gap-12">
-        
-        <div class="tilt-card">
-            <div class="tilt-card-inner bg-zinc-900/50 border border-white/10 rounded-[2.5rem] overflow-hidden p-4 backdrop-blur-md">
-                <img src="GFX-Girl.png" class="w-full aspect-video object-cover rounded-[1.8rem] mb-6">
-                <div class="px-4 pb-4">
-                    <h3 class="text-2xl font-extrabold italic uppercase">Character GFX</h3>
-                    <p class="text-blue-400 text-sm font-bold tracking-widest mt-1">CINEMATIC LIGHTING</p>
-                </div>
-            </div>
+    <main class="max-w-7xl mx-auto px-10 pb-20">
+        <div class="mb-16">
+            <h1 class="text-7xl md:text-9xl font-black tracking-tighter mb-4 italic">CREATIVE <span class="text-blue-500">FORCE.</span></h1>
+            <p class="text-gray-400 text-lg max-w-2xl font-medium">Roblox UI Designer & Animator. Turning imagination into high-fidelity reality.</p>
         </div>
 
-        <div class="tilt-card">
-            <div class="tilt-card-inner bg-zinc-900/50 border border-white/10 rounded-[2.5rem] overflow-hidden p-4 backdrop-blur-md">
-                <img src="GFX-icon.png" class="w-full aspect-video object-cover rounded-[1.8rem] mb-6">
-                <div class="px-4 pb-4">
-                    <h3 class="text-2xl font-extrabold italic uppercase">Game Branding</h3>
-                    <p class="text-blue-400 text-sm font-bold tracking-widest mt-1">UI & ICONOGRAPHY</p>
-                </div>
+        <div class="bento-grid">
+            
+            <div class="card col-span-2 row-span-2">
+                <img src="EarnsOffline.png" alt="Thumbnail">
+                <div class="label">Featured Thumbnail</div>
             </div>
+
+            <div class="card col-span-2 row-span-1">
+                <img src="Finish with outline Farmer.png" alt="Thumbnail">
+                <div class="label">Farmer Simulator UI</div>
+            </div>
+
+            <div class="card col-span-1 row-span-1">
+                <img src="image_75 (5).png" alt="GFX">
+                <div class="label">GFX PFP</div>
+            </div>
+
+            <div class="card col-span-1 row-span-1">
+                <img src="GFX-Girl.png" alt="GFX">
+                <div class="label">Character Render</div>
+            </div>
+
         </div>
 
-    </section>
-
-    <footer class="text-center pb-20 opacity-50 text-sm tracking-widest uppercase">
-        © 2024 RXDev Portfolio • Stay Creative
-    </footer>
+        <div class="grid grid-cols-3 gap-6 mt-6">
+             <div class="card h-[250px]">
+                <img src="Fan1 (13).png" alt="Fan Art">
+                <div class="label">Fan Illustration</div>
+            </div>
+            <div class="card h-[250px]">
+                <img src="Fan1 (9).png" alt="Fan Art">
+                <div class="label">Collection</div>
+            </div>
+            <div class="card h-[250px]">
+                <img src="idk (1).png" alt="Unknown">
+                <div class="label">Concept Art</div>
+            </div>
+        </div>
+    </main>
 
     <script>
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        const outline = document.getElementById('cursor-outline');
+        window.addEventListener('mousemove', (e) => {
+            outline.animate({
+                left: `${e.clientX - 20}px`,
+                top: `${e.clientY - 20}px`
+            }, { duration: 400, fill: "forwards" });
         });
 
-        // Add "Scale Up" effect on links
-        document.querySelectorAll('a, .tilt-card').forEach(item => {
-            item.addEventListener('mouseenter', () => cursor.style.transform = 'scale(2.5)');
-            item.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', () => outline.style.transform = 'scale(1.5)');
+            card.addEventListener('mouseleave', () => outline.style.transform = 'scale(1)');
         });
     </script>
-
 </body>
 </html>
