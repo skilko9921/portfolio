@@ -3,83 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RXDev | Motion & UI</title>
+    <title>RXDev | Motion Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; }
-        .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .glass-card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.05); border-color: #3b82f6; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-        .hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, rgba(0,0,0,0) 50%); }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #050505; 
+            color: white; 
+            overflow-x: hidden;
+            cursor: none; /* Hides default cursor for our custom one */
+        }
+
+        /* Custom Cursor */
+        #cursor {
+            width: 20px;
+            height: 20px;
+            background: #3b82f6;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            box-shadow: 0 0 15px #3b82f6, 0 0 30px #3b82f6;
+        }
+
+        /* 3D Card Animation */
+        .tilt-card {
+            perspective: 1000px;
+            transition: transform 0.5s ease;
+        }
+        .tilt-card-inner {
+            transition: transform 0.5s shadow 0.5s;
+            transform-style: preserve-3d;
+        }
+        .tilt-card:hover .tilt-card-inner {
+            transform: rotateY(10deg) rotateX(5deg) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Background Motion Blur */
+        .blur-circle {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: rgba(59, 130, 246, 0.2);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            animation: move 10s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="fixed inset-0 hero-gradient -z-10"></div>
+    <div id="cursor"></div>
 
-    <nav class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center sticky top-0 z-50 bg-[#050505]/80 backdrop-blur-md">
-        <div class="text-2xl font-black tracking-tighter">RX<span class="text-blue-500">DEV</span></div>
-        <div class="flex gap-8 items-center text-sm font-bold uppercase tracking-widest text-gray-400">
-            <a href="#animations" class="hover:text-blue-400 transition">Animations</a>
-            <a href="#gfx" class="hover:text-blue-400 transition">GFX & UI</a>
-            <a href="#" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition">Hire</a>
+    <div class="blur-circle top-0 left-0"></div>
+    <div class="blur-circle bottom-0 right-0" style="background: rgba(168, 85, 247, 0.15); animation-delay: -5s;"></div>
+
+    <nav class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center relative z-10">
+        <div class="flex items-center gap-3">
+            <img src="RXDevPFP.png" alt="RXDev" class="w-10 h-10 rounded-full border border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.6)]">
+            <div class="text-2xl font-black tracking-tighter uppercase">RX<span class="text-blue-500">Dev</span></div>
         </div>
+        <div class="text-xs font-bold text-gray-500 tracking-[0.2em]">ANIMATOR & UI DESIGNER</div>
     </nav>
 
-    <header class="max-w-6xl mx-auto px-6 pt-32 pb-40">
-        <h1 class="text-7xl md:text-9xl font-black tracking-tighter leading-none mb-8">
-            ANIMATING <br><span class="text-blue-500 italic">THE FUTURE.</span>
+    <header class="max-w-6xl mx-auto px-6 pt-24 pb-32">
+        <h1 class="text-7xl md:text-9xl font-black tracking-tighter leading-none">
+            PURE <br><span class="text-blue-500 italic">MOTION.</span>
         </h1>
-        <p class="text-xl text-gray-400 max-w-2xl leading-relaxed mb-10">
-            Professional Roblox Animator, UI Architect, and GFX Artist. Specializing in high-octane combat and immersive interfaces.
-        </p>
     </header>
 
-    <section id="animations" class="max-w-6xl mx-auto px-6 py-20">
-        <h2 class="text-4xl font-black italic mb-12 tracking-tighter uppercase underline decoration-blue-500 decoration-4">Animation Reels</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div class="glass-card rounded-[2rem] p-6">
-                <div class="aspect-video bg-zinc-900 rounded-2xl mb-6 overflow-hidden border border-white/5">
-                    <img src="your-animation-screenshot.png" alt="Animation Preview" class="w-full h-full object-cover opacity-50 hover:opacity-100 transition">
+    <section class="max-w-6xl mx-auto px-6 pb-40 grid grid-cols-1 md:grid-cols-2 gap-12">
+        
+        <div class="tilt-card">
+            <div class="tilt-card-inner bg-zinc-900/50 border border-white/10 rounded-[2.5rem] overflow-hidden p-4 backdrop-blur-md">
+                <img src="GFX-Girl.png" class="w-full aspect-video object-cover rounded-[1.8rem] mb-6">
+                <div class="px-4 pb-4">
+                    <h3 class="text-2xl font-extrabold italic uppercase">Character GFX</h3>
+                    <p class="text-blue-400 text-sm font-bold tracking-widest mt-1">CINEMATIC LIGHTING</p>
                 </div>
-                <h3 class="text-2xl font-bold">Combat System v2</h3>
-                <p class="text-gray-500 mt-2">Custom R15 combat with hitstop and screenshake effects.</p>
-            </div>
-            <div class="glass-card rounded-[2rem] p-6">
-                <div class="aspect-video bg-zinc-900 rounded-2xl mb-6 overflow-hidden border border-white/5">
-                    <img src="your-other-photo.png" alt="Animation Preview" class="w-full h-full object-cover opacity-50">
-                </div>
-                <h3 class="text-2xl font-bold">Emote Pack</h3>
-                <p class="text-gray-500 mt-2">Fluid, personality-driven movement for social games.</p>
             </div>
         </div>
+
+        <div class="tilt-card">
+            <div class="tilt-card-inner bg-zinc-900/50 border border-white/10 rounded-[2.5rem] overflow-hidden p-4 backdrop-blur-md">
+                <img src="GFX-icon.png" class="w-full aspect-video object-cover rounded-[1.8rem] mb-6">
+                <div class="px-4 pb-4">
+                    <h3 class="text-2xl font-extrabold italic uppercase">Game Branding</h3>
+                    <p class="text-blue-400 text-sm font-bold tracking-widest mt-1">UI & ICONOGRAPHY</p>
+                </div>
+            </div>
+        </div>
+
     </section>
 
-    <section id="gfx" class="max-w-6xl mx-auto px-6 py-20">
-        <h2 class="text-4xl font-black italic mb-12 tracking-tighter uppercase underline decoration-blue-500 decoration-4 text-right">Visual Gallery</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="glass-card rounded-3xl overflow-hidden aspect-square border border-white/5">
-                <img src="GFX-Girl.png" alt="GFX Render" class="w-full h-full object-cover">
-            </div>
-            <div class="glass-card rounded-3xl overflow-hidden aspect-square border border-white/5">
-                <img src="GFX-icon.png" alt="GFX Render" class="w-full h-full object-cover">
-            </div>
-            <div class="glass-card rounded-3xl overflow-hidden aspect-square border border-white/5">
-                <img src="RXDevPFP.png" alt="UI Design" class="w-full h-full object-cover">
-            </div>
-        </div>
-    </section>
-
-    <footer class="max-w-6xl mx-auto px-6 py-32 border-t border-white/5 text-center">
-        <p class="text-blue-500 font-bold tracking-widest uppercase mb-4">Contact Me</p>
-        <h2 class="text-5xl font-black mb-10">READY FOR COMMISSIONS?</h2>
-        <div class="inline-flex items-center gap-4 bg-white/5 border border-white/10 px-8 py-4 rounded-2xl">
-            <span class="text-xl font-bold">Discord:</span>
-            <span class="text-xl text-blue-400 font-mono">rx_dev</span>
-        </div>
+    <footer class="text-center pb-20 opacity-50 text-sm tracking-widest uppercase">
+        © 2024 RXDev Portfolio • Stay Creative
     </footer>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Add "Scale Up" effect on links
+        document.querySelectorAll('a, .tilt-card').forEach(item => {
+            item.addEventListener('mouseenter', () => cursor.style.transform = 'scale(2.5)');
+            item.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        });
+    </script>
 
 </body>
 </html>
