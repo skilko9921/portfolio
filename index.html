@@ -3,66 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RXDev | Professional Portfolio</title>
+    <title>RXDev | Motion & Animation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #080808; color: white; 
-            overflow-x: hidden; cursor: none;
-        }
-
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; color: white; cursor: none; }
+        
         #cursor-outline {
             width: 30px; height: 30px; border: 2px solid #3b82f6;
             position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999;
-            transition: transform 0.15s ease-out;
+            transition: transform 0.1s ease-out;
         }
 
-        .section-line {
-            height: 1px; background: linear-gradient(90deg, #3b82f6, transparent);
-            width: 100%; margin: 2rem 0;
+        /* Animation Tag Style */
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 10px;
+            font-weight: 800;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            display: inline-block;
+            margin-right: 5px;
         }
 
-        /* Portfolio Grid Logic */
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+        /* Smooth 3D Hover */
+        .ani-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .ani-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            border-color: #3b82f6;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
         }
 
-        .thumbnail-card {
-            aspect-ratio: 16 / 9; /* Professional Widescreen */
-            border-radius: 1.5rem; overflow: hidden; position: relative;
-            border: 1px solid rgba(255,255,255,0.1);
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #111;
+            border-radius: 1.5rem;
+            overflow: hidden;
         }
-
-        .pfp-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .pfp-card {
-            aspect-ratio: 1 / 1; /* Perfect Square */
-            border-radius: 1rem; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .card-img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card:hover .card-img {
-            transform: scale(1.08);
-        }
-
-        .nav-link {
-            transition: all 0.3s ease;
-            color: #888;
-        }
-        .nav-link:hover { color: white; text-shadow: 0 0 10px #3b82f6; }
     </style>
 </head>
 <body>
@@ -71,73 +55,77 @@
 
     <nav class="max-w-6xl mx-auto px-6 py-10 flex justify-between items-center">
         <div class="flex items-center gap-4">
-            <img src="RXDevPFP.png" class="w-12 h-12 rounded-full border-2 border-blue-500">
+            <img src="RXDevPFP.png" class="w-12 h-12 rounded-full border-2 border-blue-500 shadow-blue-500/50 shadow-lg">
             <h1 class="text-3xl font-black italic tracking-tighter">RX<span class="text-blue-500">DEV</span></h1>
         </div>
-        <div class="flex gap-8 text-[10px] font-bold tracking-widest">
-            <a href="#work" class="nav-link">PORTFOLIO</a>
-            <a href="#about" class="nav-link">ABOUT</a>
-            <a href="#contact" class="nav-link">CONTACT</a>
-        </div>
+        <div class="bg-white/5 border border-white/10 px-6 py-2 rounded-full text-[10px] font-bold text-blue-400">DISCORD: rxdev_yt</div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6">
+    <main class="max-w-6xl mx-auto px-6 pb-24">
         
-        <div class="py-20">
-            <h2 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8 uppercase">
-                Visual <br><span class="text-blue-500">Excellence.</span>
-            </h2>
-            <div class="flex gap-4">
-                <a href="YOUR_SOCIAL_LINK_HERE" class="bg-blue-600 px-6 py-2 rounded-full text-xs font-bold hover:bg-blue-500 transition">MY TWITTER / X</a>
-                <div class="bg-white/5 border border-white/10 px-6 py-2 rounded-full text-xs font-bold text-gray-400 uppercase">Discord: rxdev_yt</div>
-            </div>
-        </div>
+        <section class="mb-24">
+            <h2 class="text-5xl font-black mb-10 italic uppercase">Motion <span class="text-blue-500 italic underline">Showcase</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                
+                <div class="ani-card p-4 rounded-[2rem] bg-zinc-900/30 backdrop-blur-md">
+                    <div class="video-container mb-6">
+                        <img src="EarnsOffline.png" class="w-full h-full object-cover opacity-60">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-xl shadow-blue-500/40">
+                                <div class="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-2">
+                        <div class="flex mb-3">
+                            <span class="tag">R15</span><span class="tag">COMBAT</span><span class="tag">CLEAN</span>
+                        </div>
+                        <h3 class="text-2xl font-black italic uppercase">Advanced Sword Kit</h3>
+                        <p class="text-gray-500 text-sm mt-1 leading-relaxed">High-energy combat set featuring custom hit-stop, VFX timing, and fluid recovery frames.</p>
+                    </div>
+                </div>
 
-        <section id="about" class="mb-32">
-            <div class="section-line"></div>
-            <h3 class="text-blue-500 font-bold mb-4 tracking-widest uppercase text-sm">About Me</h3>
-            <p class="text-2xl md:text-4xl font-medium leading-tight text-gray-300">
-                I am a professional Roblox developer specializing in <span class="text-white italic">high-octane animations</span>, clean UI systems, and cinematic GFX. I focus on creating immersive visuals that elevate player experiences.
-            </p>
+                <div class="ani-card p-4 rounded-[2rem] bg-zinc-900/30 backdrop-blur-md">
+                    <div class="video-container mb-6">
+                        <img src="Finish with outline Farmer.png" class="w-full h-full object-cover opacity-60">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-xl shadow-blue-500/40">
+                                <div class="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-2">
+                        <div class="flex mb-3">
+                            <span class="tag">R6</span><span class="tag">EMOTES</span><span class="tag">STYLIZED</span>
+                        </div>
+                        <h3 class="text-2xl font-black italic uppercase">Character Emote Pack</h3>
+                        <p class="text-gray-500 text-sm mt-1 leading-relaxed">Personality-driven movements designed for social hubs and lobby interactions.</p>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
-        <section id="work" class="mb-32">
-            <h3 class="text-blue-500 font-bold mb-8 tracking-widest uppercase text-sm italic underline decoration-2">Thumbnails (16:9)</h3>
-            <div class="work-grid">
-                <div class="thumbnail-card card">
-                    <img src="EarnsOffline.png" class="card-img">
+        <section>
+            <h2 class="text-2xl font-bold mb-8 text-gray-400 tracking-widest uppercase">Static Works</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square rounded-2xl overflow-hidden border border-white/5 ani-card">
+                    <img src="GFX-Girl.png" class="w-full h-full object-cover">
                 </div>
-                <div class="thumbnail-card card">
-                    <img src="Finish with outline Farmer.png" class="card-img">
+                <div class="aspect-square rounded-2xl overflow-hidden border border-white/5 ani-card">
+                    <img src="image_75 (5).png" class="w-full h-full object-cover">
                 </div>
-            </div>
-        </section>
-
-        <section class="mb-32">
-            <h3 class="text-blue-500 font-bold mb-8 tracking-widest uppercase text-sm italic underline decoration-2">GFX & PFPs (1:1)</h3>
-            <div class="pfp-grid">
-                <div class="pfp-card card">
-                    <img src="image_75 (5).png" class="card-img">
+                <div class="aspect-square rounded-2xl overflow-hidden border border-white/5 ani-card">
+                    <img src="Fan1 (13).png" class="w-full h-full object-cover">
                 </div>
-                <div class="pfp-card card">
-                    <img src="GFX-Girl.png" class="card-img">
-                </div>
-                <div class="pfp-card card">
-                    <img src="Fan1 (13).png" class="card-img">
-                </div>
-                <div class="pfp-card card">
-                    <img src="Fan1 (9).png" class="card-img">
+                <div class="aspect-square rounded-2xl overflow-hidden border border-white/5 ani-card">
+                    <img src="idk (1).png" class="w-full h-full object-cover">
                 </div>
             </div>
         </section>
 
     </main>
-
-    <footer id="contact" class="bg-zinc-950 py-20 text-center border-t border-white/5">
-        <p class="text-gray-500 uppercase text-[10px] tracking-[0.5em] mb-4">Contact for Commissions</p>
-        <h2 class="text-4xl font-black italic mb-8 uppercase tracking-tighter">rxdev_yt</h2>
-        <a href="mailto:your_email@gmail.com" class="text-blue-500 font-bold hover:underline">HIRE ME VIA EMAIL</a>
-    </footer>
 
     <script>
         const outline = document.getElementById('cursor-outline');
