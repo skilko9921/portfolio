@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RXDev | UI & Motion Studio</title>
+    <title>RXDev | Motion & UI</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; color: white; cursor: none; scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030303; color: white; cursor: none; overflow-x: hidden; }
         #cursor-outline {
-            width: 30px; height: 30px; border: 2px solid #3b82f6;
+            width: 35px; height: 35px; border: 2px solid #3b82f6;
             position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999;
-            transition: transform 0.15s ease-out;
         }
-        .section-header { border-left: 4px solid #3b82f6; padding-left: 1rem; margin-bottom: 2rem; }
-        .card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid rgba(255,255,255,0.05); overflow: hidden; background: #0a0a0a; }
-        .card:hover { transform: translateY(-8px); border-color: #3b82f6; box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1); }
-        .tag { background: #3b82f620; color: #60a5fa; padding: 2px 10px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; border: 1px solid #3b82f640; }
+        .reveal { opacity: 0; transform: translateY(30px); }
+        .card { transition: transform 0.3s ease; background: #0a0a0a; border: 1px solid rgba(255,255,255,0.05); }
+        .card:hover { border-color: #3b82f6; box-shadow: 0 0 30px rgba(59, 130, 246, 0.2); }
+        .social-btn { transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1); }
+        .social-btn:hover { background: white; color: black; transform: scale(1.05); }
     </style>
 </head>
 <body>
@@ -25,72 +26,77 @@
 
     <nav class="max-w-6xl mx-auto px-6 py-10 flex justify-between items-center">
         <div class="flex items-center gap-4">
-            <img src="RXDevPFP.png" class="w-12 h-12 rounded-full border-2 border-blue-500 shadow-lg shadow-blue-500/20">
-            <h1 class="text-3xl font-black italic tracking-tighter uppercase">RX<span class="text-blue-500 underline">Dev</span></h1>
+            <img src="RXDevPFP.png" class="w-12 h-12 rounded-full border-2 border-blue-500 shadow-lg">
+            <h1 class="text-3xl font-black italic tracking-tighter">RX<span class="text-blue-500">DEV</span></h1>
         </div>
-        <div class="flex gap-6 items-center">
-            <span class="text-[10px] font-bold text-gray-500 tracking-widest">DISCORD: rxdev_yt</span>
-            <a href="#contact" class="bg-blue-600 px-5 py-2 rounded-full text-xs font-bold hover:bg-blue-500 transition shadow-lg shadow-blue-500/30">HIRE ME</a>
-        </div>
+        <div class="text-[10px] font-bold text-gray-500 tracking-widest uppercase">Motion Specialist</div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 pb-32">
+    <main class="max-w-6xl mx-auto px-6">
         
-        <header class="py-20 max-w-3xl">
-            <p class="text-blue-500 font-bold tracking-[0.3em] mb-4 text-xs uppercase italic">Expert Motion & UI</p>
-            <h2 class="text-6xl md:text-8xl font-black leading-[0.9] mb-8 italic uppercase tracking-tighter">Crafting <br>Digital <span class="text-blue-500">Worlds.</span></h2>
-            <p class="text-xl text-gray-400 font-medium leading-relaxed">I am RXDev—a UI Designer, GFX Artist, and Animator. I bridge the gap between static design and fluid motion for top-tier Roblox experiences.</p>
+        <header class="py-24">
+            <h1 id="hero-text" class="text-7xl md:text-[9rem] font-black leading-[0.85] italic uppercase tracking-tighter">
+                Visual <br> <span class="text-blue-500">Adrenaline.</span>
+            </h1>
+            
+            <div class="mt-12 flex flex-wrap gap-4 reveal">
+                <a href="https://twitter.com/yourusername" class="social-btn px-6 py-3 rounded-xl font-bold text-sm uppercase italic">Twitter / X</a>
+                <a href="https://youtube.com/@yourchannel" class="social-btn px-6 py-3 rounded-xl font-bold text-sm uppercase italic">YouTube</a>
+                <a href="https://www.roblox.com/users/yourid/profile" class="social-btn px-6 py-3 rounded-xl font-bold text-sm uppercase italic">Roblox Profile</a>
+                <div class="px-6 py-3 rounded-xl font-bold text-sm uppercase italic bg-blue-600/10 border border-blue-500/30 text-blue-400">Discord: rxdev_yt</div>
+            </div>
         </header>
 
         <section class="mb-32">
-            <div class="section-header">
-                <h3 class="text-2xl font-black italic uppercase">Widescreen Showcase</h3>
-                <p class="text-gray-500 text-sm font-bold">Thumbnails & UI Layouts</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="card rounded-3xl group">
-                    <img src="EarnsOffline.png" class="w-full aspect-video object-cover opacity-80 group-hover:opacity-100 transition">
+            <h3 class="text-xs font-bold tracking-[0.4em] text-gray-500 uppercase mb-8 reveal italic">Featured Thumbnails</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card rounded-[2rem] overflow-hidden reveal">
+                    <img src="EarnsOffline.png" class="w-full aspect-video object-cover">
                 </div>
-                <div class="card rounded-3xl group">
-                    <img src="Finish with outline Farmer.png" class="w-full aspect-video object-cover opacity-80 group-hover:opacity-100 transition">
+                <div class="card rounded-[2rem] overflow-hidden reveal">
+                    <img src="farmer.png" class="w-full aspect-video object-cover">
                 </div>
-                <div class="card rounded-3xl group">
-                    <img src="idk (1).png" class="w-full aspect-video object-cover opacity-80 group-hover:opacity-100 transition">
+                <div class="card rounded-[2rem] overflow-hidden reveal">
+                    <img src="idk (1).png" class="w-full aspect-video object-cover">
                 </div>
             </div>
         </section>
 
         <section class="mb-32">
-            <div class="section-header text-right !border-l-0 !border-r-4 !pr-4">
-                <h3 class="text-2xl font-black italic uppercase text-white">Visual Identity</h3>
-                <p class="text-gray-500 text-sm font-bold">GFX & Profile Renders</p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="card rounded-2xl aspect-square"><img src="GFX-Girl.png" class="w-full h-full object-cover"></div>
-                <div class="card rounded-2xl aspect-square"><img src="image_75 (5).png" class="w-full h-full object-cover"></div>
-                <div class="card rounded-2xl aspect-square"><img src="Fan1 (13).png" class="w-full h-full object-cover"></div>
-                <div class="card rounded-2xl aspect-square"><img src="Fan1 (9).png" class="w-full h-full object-cover"></div>
-            </div>
-        </section>
-
-        <section id="contact" class="bg-blue-600/5 border border-blue-500/20 rounded-[3rem] p-12 text-center overflow-hidden relative">
-            <div class="absolute top-0 right-0 p-10 opacity-10 text-[10rem] font-black italic select-none">MOTION</div>
-            <h4 class="text-blue-400 font-bold tracking-[0.4em] uppercase text-xs mb-4">Ready to Collaborate?</h4>
-            <h2 class="text-4xl md:text-6xl font-black mb-10 italic uppercase">Let's build <br>something <span class="text-blue-500">huge.</span></h2>
-            <div class="flex flex-wrap justify-center gap-4">
-                <div class="bg-white/5 border border-white/10 px-8 py-4 rounded-2xl font-black text-xl italic uppercase tracking-tighter">rxdev_yt</div>
+            <h3 class="text-xs font-bold tracking-[0.4em] text-gray-500 uppercase mb-8 reveal italic text-right">Character Renders</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
+                <div class="card rounded-3xl aspect-square overflow-hidden"><img src="GFX-Girl.png" class="w-full h-full object-cover"></div>
+                <div class="card rounded-3xl aspect-square overflow-hidden"><img src="image_75 (5).png" class="w-full h-full object-cover"></div>
+                <div class="card rounded-3xl aspect-square overflow-hidden"><img src="Fan1 (13).png" class="w-full h-full object-cover"></div>
+                <div class="card rounded-3xl aspect-square overflow-hidden"><img src="Fan1 (9).png" class="w-full h-full object-cover"></div>
             </div>
         </section>
 
     </main>
 
     <script>
+        // Smooth Cursor
         const outline = document.getElementById('cursor-outline');
         window.addEventListener('mousemove', (e) => {
-            outline.animate({
-                left: `${e.clientX - 15}px`,
-                top: `${e.clientY - 15}px`
-            }, { duration: 300, fill: "forwards" });
+            gsap.to(outline, { x: e.clientX - 17, y: e.clientY - 17, duration: 0.5, ease: "power3.out" });
+        });
+
+        // Buttery Smooth Reveal Animations
+        gsap.to(".reveal", {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            stagger: 0.2,
+            ease: "expo.out",
+            delay: 0.5
+        });
+
+        // Hero Text Entrance
+        gsap.from("#hero-text", {
+            x: -100,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power4.out"
         });
     </script>
 </body>
